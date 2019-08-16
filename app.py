@@ -1,8 +1,4 @@
 from flask import Flask
-from azure.storage.blob import BlockBlobService
-from azure.common import AzureHttpError
-import io
-import pandas as pd
 
 
 app = Flask(__name__)
