@@ -15,12 +15,12 @@ credentials_obj = azure_connection.read_confidential()
 
 class TestClass1(Resource):
     def get(self):
-        return credentials_obj['account_name']
+        return {'Hello': 'World?'}
 
 
 class TestClass2(Resource):
     def get(self):
-        return credentials_obj['account_key']
+        return {'Hello': 'World!'}
 
 
 api.add_resource(TestClass1, '/test1')
