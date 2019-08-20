@@ -20,7 +20,7 @@ class TestClass1(Resource):
 
 class TestClass2(Resource):
     def get(self):
-        return azure_connection.read_confidential()
+        return azure_connection.read_confidential()['account_name']
 
 
 api.add_resource(TestClass1, '/test1')
