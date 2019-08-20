@@ -5,7 +5,7 @@ Exposing of the pythia api
 from flask import Flask
 from flask_restful import Resource, Api
 from flask_jsonpify import jsonify
-# import azure_connection
+import azure_connection
 
 
 app = Flask(__name__)
@@ -20,7 +20,7 @@ class TestClass1(Resource):
 
 class TestClass2(Resource):
     def get(self):
-        return {'Hello': 'World!'}
+        return azure_connection.read_confidential()
 
 
 api.add_resource(TestClass1, '/test1')
