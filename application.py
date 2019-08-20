@@ -5,20 +5,22 @@ Exposing of the pythia api
 from flask import Flask
 from flask_restful import Resource, Api
 from flask_jsonpify import jsonify
+import azure_connection
 
 
 app = Flask(__name__)
 api = Api(app)
+credentials_obj = azure_connection.read_confidential()
 
 
 class TestClass1(Resource):
     def get(self):
-        return {'Hello': 'World! test 1'}
+        return credentials_obj['account_name']
 
 
 class TestClass2(Resource):
     def get(self):
-        return {'Hello': 'World! test 2'}
+        return credentials_obj['account_key']
 
 
 api.add_resource(TestClass1, '/test1')
