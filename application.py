@@ -10,7 +10,8 @@ import azure_connection
 
 app = Flask(__name__)
 api = Api(app)
-# credentials_obj = azure_connection.read_confidential()
+
+blob = azure_connection.get_blob()
 
 
 class TestClass1(Resource):
@@ -20,7 +21,7 @@ class TestClass1(Resource):
 
 class TestClass2(Resource):
     def get(self):
-        return azure_connection.read_confidential()['account_name']
+        return {'blob': '{}'.format(str(blob))}
 
 
 api.add_resource(TestClass1, '/test1')
