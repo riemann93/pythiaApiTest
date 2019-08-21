@@ -91,5 +91,8 @@ ENV/
 #pycharm
 .idea/
 
+#visual studio code
+.vscode/
+
 #confidential
 CONFIDENTIAL.json
