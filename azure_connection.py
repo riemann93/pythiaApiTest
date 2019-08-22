@@ -17,4 +17,15 @@ def get_blob():
 
     blob = block_blob_service.get_blob_to_bytes('tcmdatablob', '10002/2/14/201502/data')
 
-    return blob.metadata
+    blob_length = blob.properties.content_length
+    blob_content = str(blob.content)
+    blob_content_sliced = blob_content[0:50]
+    blob_content_sliced += "..."
+
+    return_json = {
+        "blob name": blob.name,
+        "blob length": blob_length,
+        "blob content": blob_content_sliced
+    }
+
+    return return_json
