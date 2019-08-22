@@ -5,7 +5,7 @@ import pandas as pd
 import json
 
 
-def get_blob():
+def get_blob(string):
 
     with open('CONFIDENTIAL.json', 'r') as confidential_file:
         data = confidential_file.read()
@@ -15,7 +15,9 @@ def get_blob():
     block_blob_service = BlockBlobService(account_name=confidential_object['account_name'],
                                           account_key=confidential_object['account_key'])
 
-    blob = block_blob_service.get_blob_to_bytes('tcmdatablob', '10002/2/14/201502/data')
+    # test string: '10002/2/14/201502/data'
+
+    blob = block_blob_service.get_blob_to_bytes('tcmdatablob', string)
 
     blob_length = blob.properties.content_length
     blob_content = str(blob.content)

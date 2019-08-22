@@ -11,21 +11,22 @@ import azure_connection
 app = Flask(__name__)
 api = Api(app)
 
-return_json = azure_connection.get_blob()
 
-
-class TestClass1(Resource):
+class Landing(Resource):
     def get(self):
-        return {'Hello': 'World?'}
+        return {'Hello': 'World!'}
 
 
 class Blob(Resource):
-    def get(self):
+    def get(self, tid, sid, mid, date):
+
+        string = '{}/{}/{}/{}/data'.format(tid, sid, mid, date)
+        return_json = azure_connection.get_blob(string)
         return return_json
 
 
-api.add_resource(TestClass1, '/test1')
-api.add_resource(Blob, '/blob')
+api.add_resource(Landing, '/')
+api.add_resource(Blob, '/blob/<tid>/<sid>/<mid>/<date>')
 
 if __name__ == '__main__':
     app.run(debug=True)
