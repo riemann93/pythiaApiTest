@@ -2,19 +2,25 @@
 Exposing of the pythia api
 """
 
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Resource, Api
-from flask_jsonpify import jsonify
 import azure_connection
+import jwt
 
 
 app = Flask(__name__)
 api = Api(app)
 
 
-class Landing(Resource):
-    def get(self):
-        return {'Hello': 'World!'}
+class Login(Resource):
+    def post(self):
+        auth = request.authorization
+
+        return_json = {
+            'username': auth,
+            'password': auth.password
+        }
+        return return_json
 
 
 class Blob(Resource):
@@ -25,7 +31,7 @@ class Blob(Resource):
         return return_json
 
 
-api.add_resource(Landing, '/')
+api.add_resource(Login, '/login')
 api.add_resource(Blob, '/blob/<tid>/<sid>/<mid>/<date>')
 
 if __name__ == '__main__':
