@@ -21,13 +21,12 @@ def get_blob(string):
 
     blob_length = blob.properties.content_length
     blob_content = str(blob.content)
-    blob_content_sliced = blob_content[0:10]
-    blob_content_sliced += "***********************************************..."
+    blob_content_secured = "******VIBRATION DATA******"
 
     return_json = {
         "blob name": blob.name,
         "blob length": blob_length,
-        "blob content": blob_content_sliced
+        "blob content": blob_content_secured
     }
 
     return return_json
